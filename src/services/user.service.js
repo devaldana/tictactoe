@@ -1,34 +1,39 @@
-const { User } = require("../models");
-const { TakenUsernameException, UserNotFoundException } = require('./../exceptions')
-const users = new Map()
+const { User } = require('../models');
+const { TakenUsernameException, UserNotFoundException } = require('../exceptions')
+const database = require('../repository/database')
 
 function create(username) {
-    if (users.has(username)) {
-        throw new TakenUsernameException(`Username '${username}' is already in use`)
+    if (!database.userExists(username)) {
+        const newUser = new User(username)
+        database.saveUser(newUser)
+        return newUser.getPublicProfile()
     }
-    const newUser = new User(username)
-    users.set(username, newUser) // saving the user
-    return newUser.getPublicProfile()
+    throw new TakenUsernameException(`Username '${username}' is already in use`)
 }
 
 function findAll() {
-    return [...users.values()].map(user => user.getPublicProfile())
+    return database.findAllUsers().map(user => user.getPublicProfile())
 }
 
 function findByUsername(username) {
-    if (!users.has(username)) {
-       throw new UserNotFoundException(`User '${username}' was not found`)
+    const user = database.getUserByUsername(username);
+    if (user) {
+        return user.getPublicProfile()
     }
-    return users.get(username).getPublicProfile()
+    throw new UserNotFoundException(`User '${username}' was not found`)
 }
 
 function findUserGames(username, status) {
-    if (!users.has(username)) {
-        throw new UserNotFoundException(`User '${username}' was not found`)
+    const user = database.getUserByUsername(username);
+    if (user) {
+        if(!status) return user.getPlayedGames().map(getGamePublicRepresentation)
+        return user.getPlayedGames().filter(game => game.status === status).map(getGamePublicRepresentation)
     }
-    const user = users.get(username)
-    if(!status) return user.getPlayedGames().map(game => game.getPublicRepresentation())
-    return user.getPlayedGames().filter(game => game.status === status).map(game => game.getPublicRepresentation())
+    throw new UserNotFoundException(`User '${username}' was not found`)
+}
+
+function getGamePublicRepresentation(game) {
+    return game.getPublicRepresentation()
 }
 
 module.exports = {
