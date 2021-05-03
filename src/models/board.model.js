@@ -64,7 +64,7 @@ class Board {
     }
 
     /**
-     * Mark the cell with the given cell and put the sent symbol.
+     * Mark the cell with the given key using the passed symbol.
      * @param cellKey key of the cell to be marked.
      * @param symbol to put on the cell.
      * @returns {boolean} true if all the cells are marked, false otherwise.

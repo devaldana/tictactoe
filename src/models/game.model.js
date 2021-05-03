@@ -32,6 +32,14 @@ class Game {
         return this.markCell(cellKey, this.playerO, 'O', this.playerOMarkedCells)
     }
 
+    /**
+     * Mark the given cell in the board with the given symbol.
+     * @param cellKey key of the cell to be marked.
+     * @param player who is marking the cell.
+     * @param symbol to be marked on the cell.
+     * @param markedCells the cell that the given user has marked before.
+     * @returns {boolean} true if the user wins marking the given cell, false otherwise.
+     */
     markCell(cellKey, player, symbol, markedCells) {
         // Mark the cell in the board with the given symbol.
         const allCellsMarked = this.board.markCell(cellKey, symbol)
@@ -77,7 +85,7 @@ class Game {
     }
 
     /**
-     * Evaluates if the game has finished. The game is considered finished if is in FINISHED
+     * Evaluates if the game has finished. The game is considered finished if it's in FINISHED
      * or TIED status.
      * @returns {boolean} true if the game is not in PLAYING status, false otherwise.
      */
