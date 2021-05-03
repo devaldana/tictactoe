@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User } = require('../models')
 const { TakenUsernameException, UserNotFoundException } = require('../exceptions')
 const { UserRepository } = require('../repositories')
 
@@ -16,7 +16,7 @@ function findAll() {
 }
 
 function findByUsername(username) {
-    const user = UserRepository.findByUsername(username);
+    const user = UserRepository.findByUsername(username)
     if (user) {
         return user.getPublicProfile()
     }
@@ -24,7 +24,7 @@ function findByUsername(username) {
 }
 
 function findUserGames(username, status) {
-    const user = UserRepository.findByUsername(username);
+    const user = UserRepository.findByUsername(username)
     if (user) {
         if(status) {
             return user.getPlayedGames().filter(game => game.status === status).map(getGamePublicRepresentation)

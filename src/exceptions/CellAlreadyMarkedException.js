@@ -1,6 +1,6 @@
 class CellAlreadyMarkedException extends Error {
     constructor(message) {
-        super(message);
+        super(message)
         this.name = 'CellAlreadyMarkedException'
         this.statusCode = 400
     }

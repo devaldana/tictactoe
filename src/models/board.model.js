@@ -28,7 +28,7 @@ const DEFAULT_CELL_VALUE = ''
 *
 * @type {Set}
  */
-const WINNER_VECTORS = new Set(['ABC', 'DEF', 'GHI', 'ADG', 'BEH', 'CFI', 'AEI', 'CEG']);
+const WINNER_VECTORS = new Set(['ABC', 'DEF', 'GHI', 'ADG', 'BEH', 'CFI', 'AEI', 'CEG'])
 
 /**
  * Class that represents a cell in the board. The board is build using a 3x3 matrix,
@@ -72,7 +72,7 @@ class Board {
     markCell(cellKey, symbol) {
         const cell = this.getCellByKey(cellKey)
         if (this.availableCells.has(cellKey)) {
-            this.availableCells.delete(cellKey);
+            this.availableCells.delete(cellKey)
             this.matrix[cell.i][cell.j] = symbol
             return this.availableCells.size === 0
         }
@@ -80,13 +80,13 @@ class Board {
     }
 
     isWinnerVector(vector) {
-        return WINNER_VECTORS.has(vector);
+        return WINNER_VECTORS.has(vector)
     }
 
     getCellByKey(key) {
         const cell = CELLS[key]
-        if(cell) return cell;
-        throw new InvalidCellException(`Cell with key '${key}' is not valid`);
+        if(cell) return cell
+        throw new InvalidCellException(`Cell with key '${key}' is not valid`)
     }
 
     getPublicRepresentation() {

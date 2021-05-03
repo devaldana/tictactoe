@@ -1,6 +1,6 @@
 class InvalidParamsException extends Error {
     constructor(message) {
-        super(message);
+        super(message)
         this.name = 'InvalidParamsException'
         this.statusCode = 400
     }

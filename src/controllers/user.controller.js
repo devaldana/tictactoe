@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { InvalidParamsException } = require('../exceptions')
 const { UserService } = require('../services')
-const userController = Router();
+const userController = Router()
 
 userController.post("/users", (req, res) => {
     const username = validateUsername(req.body.username)

@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { InvalidParamsException } = require('../exceptions')
 const { GameService } = require('../services')
-const gameController = Router();
+const gameController = Router()
 
 gameController.post("/games", (req, res) => {
     const username = validateUsername(req.body.username)

@@ -1,6 +1,6 @@
 class TakenUsernameException extends Error {
     constructor(message) {
-        super(message);
+        super(message)
         this.name = 'TakenUsernameException'
         this.statusCode = 400
     }

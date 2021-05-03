@@ -1,6 +1,6 @@
 const { Game, User } = require('../src/models')
 
-const game = new Game(new User('David', 'X'), new User('Caro', 'O'))
+const game = new Game(new User('David'), new User('Caro'))
 
 // David plays
 const winAfterMarkE = game.playerXMarkCell('E')

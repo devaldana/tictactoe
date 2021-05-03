@@ -42,7 +42,7 @@ class Game {
         markedCells.sort()
 
         // 3 is the minimum number of cells required to be marked to win.
-        if(markedCells.length < 3) return false;
+        if(markedCells.length < 3) return false
 
         // If the user has 3 or more marked cells, check if there are one winner vector.
         if (this.checkIfWins(markedCells)) {
@@ -55,7 +55,7 @@ class Game {
             this.status = 'TIED'
         }
 
-        return false;
+        return false
     }
 
     /**
@@ -69,10 +69,10 @@ class Game {
      */
     checkIfWins(markedCells) {
         for (let i = 0, n = 3; n <= markedCells.length; i++, n++) {
-            const vector = markedCells.slice(i, n).join('');
-            if(this.board.isWinnerVector(vector)) return true;
+            const vector = markedCells.slice(i, n).join('')
+            if(this.board.isWinnerVector(vector)) return true
         }
-        return false;
+        return false
     }
 
     /**
@@ -81,7 +81,7 @@ class Game {
      * @returns {boolean} true if the game is not in PLAYING status, false otherwise.
      */
     isFinished() {
-        return this.status !== 'PLAYING';
+        return this.status !== 'PLAYING'
     }
 
     getPublicRepresentation() {

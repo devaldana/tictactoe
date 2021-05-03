@@ -10,7 +10,7 @@ class User {
     }
 
     getPlayedGames(){
-        return this.games;
+        return this.games
     }
 
     getInProgressGames(){
