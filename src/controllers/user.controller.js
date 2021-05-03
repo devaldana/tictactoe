@@ -23,7 +23,8 @@ userController.get("/users/:username/games", (req, res) => {
 })
 
 function validateUsername(username) {
-    if(!username) throw new InvalidParamsException('A username must be provided')
+    if(username === undefined || username.trim() === '')
+        throw new InvalidParamsException('A valid username must be provided')
     return username
 }
 
