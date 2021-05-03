@@ -1,4 +1,4 @@
-const { InvalidCellException, CellAlreadyMarkedException } = require('./../exceptions')
+const { InvalidCellException, CellAlreadyMarkedException } = require('../exceptions')
 
 /**
  * Default value for board's cells initialization.
