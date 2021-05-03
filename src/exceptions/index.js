@@ -1,6 +1,11 @@
 const InvalidCellException = require('./InvalidCellException')
-const CellAlreadyTakenException = require('./CellAlreadyTakenException')
+const CellAlreadyMarkedException = require('./CellAlreadyMarkedException')
+const TakenUsernameException = require('./TakenUsernameException')
+const UserNotFoundException = require('./UserNotFoundException')
+
 module.exports = {
     InvalidCellException,
-    CellAlreadyTakenException
+    CellAlreadyMarkedException,
+    TakenUsernameException,
+    UserNotFoundException
 }

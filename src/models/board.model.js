@@ -1,4 +1,4 @@
-const { InvalidCellException, CellAlreadyTakenException } = require('./../exceptions')
+const { InvalidCellException, CellAlreadyMarkedException } = require('./../exceptions')
 
 /**
  * Default value for board's cells initialization.
@@ -76,7 +76,7 @@ class Board {
             this.matrix[cell.i][cell.j] = symbol
             return this.availableCells.size === 0
         }
-        throw new CellAlreadyTakenException(`Cell with key '${cellKey}' was already taken`)
+        throw new CellAlreadyMarkedException(`Cell with key '${cellKey}' was already marked`)
     }
 
     isWinnerVector(vector) {

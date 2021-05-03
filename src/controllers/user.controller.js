@@ -1,17 +1,13 @@
 const { Router } = require('express')
-const { User } = require("./../models")
+const { UserService } = require('./../services')
 const userController = Router();
 
 const users = new Map()
 
 userController.post("/users", (req, res) => {
-    const username = req.body.username;
-    if (users.has(username)) {
-        return res.status(400).send({error: `Username '${username}' is already used.`})
-    }
-    const newUser = new User(username)
-    users.set(username, newUser)
-    res.send(newUser.getPublicProfile())
+    const username = req.body.username // what if body arrive empty? InvalidParamsException
+    const newUserPublicProfile = UserService.create(username)
+    res.send(newUserPublicProfile)
 })
 
 userController.get("/users", (req, res) => {
