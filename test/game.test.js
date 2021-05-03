@@ -43,7 +43,6 @@ test('Game should be in FINISHED status', () => {
 
 test('Check playerX in game', () => {
     expect(game.playerX.username).toBe('David');
-    expect(game.playerX.symbol).toBe('X');
     expect(game.playerX.games.length).toBe(1);
     expect(game.playerX.getInProgressGames().length).toBe(0);
     expect(game.playerX.getPlayedGames().length).toBe(1);
@@ -55,7 +54,6 @@ test('Check playerX in game', () => {
 
 test('Check playerO in game', () => {
     expect(game.playerO.username).toBe('Caro');
-    expect(game.playerO.symbol).toBe('O');
     expect(game.playerO.games.length).toBe(1);
     expect(game.playerO.getInProgressGames().length).toBe(0);
     expect(game.playerO.getPlayedGames().length).toBe(1);

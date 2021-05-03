@@ -1,22 +1,22 @@
 const { User } = require('../models');
 const { TakenUsernameException, UserNotFoundException } = require('../exceptions')
-const database = require('../repository/database')
+const { UserRepository } = require('../repositories')
 
 function create(username) {
-    if (!database.userExists(username)) {
+    if (!UserRepository.exists(username)) {
         const newUser = new User(username)
-        database.saveUser(newUser)
+        UserRepository.save(newUser)
         return newUser.getPublicProfile()
     }
     throw new TakenUsernameException(`Username '${username}' is already in use`)
 }
 
 function findAll() {
-    return database.findAllUsers().map(user => user.getPublicProfile())
+    return UserRepository.findAll().map(user => user.getPublicProfile())
 }
 
 function findByUsername(username) {
-    const user = database.getUserByUsername(username);
+    const user = UserRepository.findByUsername(username);
     if (user) {
         return user.getPublicProfile()
     }
@@ -24,7 +24,7 @@ function findByUsername(username) {
 }
 
 function findUserGames(username, status) {
-    const user = database.getUserByUsername(username);
+    const user = UserRepository.findByUsername(username);
     if (user) {
         if(status) {
             return user.getPlayedGames().filter(game => game.status === status).map(getGamePublicRepresentation)

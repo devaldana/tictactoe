@@ -1,7 +1,6 @@
 class User {
-    constructor(username, symbol) {
+    constructor(username) {
         this.username = username
-        this.symbol = symbol
         this.games = []
         this.createdAt = new Date()
     }
@@ -37,7 +36,6 @@ class User {
         return {
             createdAt: this.createdAt,
             username: this.username,
-            symbol: this.symbol,
             totalPlayedGames: this.getPlayedGames().length,
             totalInProgressGames: this.getInProgressGames().length,
             totalWonGames: this.getWonGames().length,

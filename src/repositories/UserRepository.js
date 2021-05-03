@@ -1,24 +1,24 @@
 const usersCollection = new Map()
 
-function userExists(username) {
+function exists(username) {
     return usersCollection.has(username)
 }
 
-function saveUser(user) {
+function save(user) {
     usersCollection.set(user.username, user)
 }
 
-function findAllUsers() {
+function findAll() {
     return  [...usersCollection.values()]
 }
 
-function getUserByUsername(username) {
+function findByUsername(username) {
     return usersCollection.get(username)
 }
 
 module.exports = {
-    userExists,
-    saveUser,
-    findAllUsers,
-    getUserByUsername
+    exists,
+    save,
+    findAll,
+    findByUsername
 }

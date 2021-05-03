@@ -14,26 +14,26 @@ class Game {
     }
 
     /**
-     * Mark the given cell in the board with the player X symbol.
+     * Mark the given cell in the board with X.
      * @param cellKey key of the cell to be marked.
      * @returns {boolean} true if the user wins marking the given cell, false otherwise.
      */
     playerXMarkCell(cellKey) {
-        return this.markCell(cellKey, this.playerX, this.playerXMarkedCells)
+        return this.markCell(cellKey, this.playerX, 'X', this.playerXMarkedCells)
     }
 
     /**
-     * Mark the given cell in the board with the player O symbol.
+     * Mark the given cell in the board with O.
      * @param cellKey key of the cell to be marked.
      * @returns {boolean} true if the user wins marking the given cell, false otherwise.
      */
     playerOMarkCell(cellKey) {
-        return this.markCell(cellKey, this.playerO, this.playerOMarkedCells)
+        return this.markCell(cellKey, this.playerO, 'O', this.playerOMarkedCells)
     }
 
-    markCell(cellKey, player, markedCells) {
-        // Mark the cell in the board with the player symbol.
-        const allCellsMarked = this.board.markCell(cellKey, player.symbol)
+    markCell(cellKey, player, symbol, markedCells) {
+        // Mark the cell in the board with the given symbol.
+        const allCellsMarked = this.board.markCell(cellKey, symbol)
 
         // Add the cell to the player marked cells set.
         markedCells.push(cellKey)
