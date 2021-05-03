@@ -26,8 +26,10 @@ function findByUsername(username) {
 function findUserGames(username, status) {
     const user = database.getUserByUsername(username);
     if (user) {
-        if(!status) return user.getPlayedGames().map(getGamePublicRepresentation)
-        return user.getPlayedGames().filter(game => game.status === status).map(getGamePublicRepresentation)
+        if(status) {
+            return user.getPlayedGames().filter(game => game.status === status).map(getGamePublicRepresentation)
+        }
+        return user.getPlayedGames().map(getGamePublicRepresentation)
     }
     throw new UserNotFoundException(`User '${username}' was not found`)
 }
