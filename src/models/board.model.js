@@ -4,7 +4,7 @@ const { InvalidCellException, CellAlreadyMarkedException } = require('../excepti
  * Default value for board's cells initialization.
  * @type {string}
  */
-const DEFAULT_CELL_VALUE = ''
+const DEFAULT_CELL_VALUE = '_'
 
 /** Each cell in the board is represented by a letter:
 *
@@ -90,7 +90,7 @@ class Board {
     }
 
     getPublicRepresentation() {
-        return this.matrix[0].join('') + "\n" + this.matrix[1].join('') + "\n" + this.matrix[2].join('')
+        return 'First row: ' + this.matrix[0].join(' | ') + ', Second row: ' + this.matrix[1].join(' | ') + ', Third row: ' + this.matrix[2].join(' | ')
     }
 }
 

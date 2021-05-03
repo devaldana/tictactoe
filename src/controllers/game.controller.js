@@ -3,15 +3,22 @@ const { InvalidParamsException } = require('../exceptions')
 const { GameService } = require('../services')
 const gameController = Router()
 
-gameController.post("/games", (req, res) => {
-    const username = validateUsername(req.body.username)
-    res.send(GameService.create(username))
+gameController.post('/games/tic-tac-toe/join', (req, res) => {
+    const username = validParam('username', req.body.username)
+    res.send(GameService.join(username, req.body.room))
 })
 
-function validateUsername(username) {
-    if(username === undefined || username.trim() === '')
-        throw new InvalidParamsException('A valid username must be provided')
-    return username
+gameController.post('/games/tic-tac-toe/play', (req, res) => {
+    const username = validParam('username', req.body.username)
+    const room = validParam('room', req.body.room)
+    const cellKey = validParam('cellKey', req.body.cellKey)
+    res.send(GameService.play(username, room, cellKey))
+})
+
+function validParam(paramName, value) {
+    if(value === undefined || value.trim() === '')
+        throw new InvalidParamsException(`A valid ${paramName} must be provided`)
+    return value
 }
 
 module.exports = gameController

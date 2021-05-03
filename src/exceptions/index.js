@@ -4,6 +4,9 @@ const TakenUsernameException = require('./TakenUsernameException')
 const UserNotFoundException = require('./UserNotFoundException')
 const InvalidParamsException = require('./InvalidParamsException')
 const UnregisteredUserException = require('./UnregisteredUserException')
+const GameAlreadyFinishedException = require('./GameAlreadyFinishedException')
+const GameNotFoundException = require('./GameNotFoundException')
+const UnauthorizedToPlayInGameException = require('./UnauthorizedToPlayInGameException')
 
 module.exports = {
     InvalidCellException,
@@ -11,5 +14,8 @@ module.exports = {
     TakenUsernameException,
     UserNotFoundException,
     InvalidParamsException,
-    UnregisteredUserException
+    UnregisteredUserException,
+    GameAlreadyFinishedException,
+    GameNotFoundException,
+    UnauthorizedToPlayInGameException
 }

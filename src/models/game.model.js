@@ -7,10 +7,11 @@ class Game {
         this.playerXMarkedCells = []
         this.playerOMarkedCells = []
         this.winner = undefined
-        playerX.registerGame(this)
-        playerO.registerGame(this)
         this.board = new Board()
         this.status = 'PLAYING'
+        this.createdAt = new Date()
+        playerX.registerGame(this)
+        if(playerO) playerO.registerGame(this)
     }
 
     /**
@@ -86,13 +87,15 @@ class Game {
 
     getPublicRepresentation() {
         return {
+            createdAt: this.createdAt,
             playerX: this.playerX.getPublicProfile(),
             playerO: this.playerO.getPublicProfile(),
             playerXMarkedCells: this.playerXMarkedCells,
             playerOMarkedCells: this.playerOMarkedCells,
             winner: this.winner.getPublicProfile(),
             status: this.status,
-            board: this.board.getPublicRepresentation()
+            finished: this.isFinished(),
+            board: this.board.getPublicRepresentation(),
         }
     }
 }
