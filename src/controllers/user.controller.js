@@ -1,36 +1,30 @@
 const { Router } = require('express')
+const { InvalidParamsException } = require('./../exceptions')
 const { UserService } = require('./../services')
 const userController = Router();
 
-const users = new Map()
-
 userController.post("/users", (req, res) => {
-    const username = req.body.username // what if body arrive empty? InvalidParamsException
-    const newUserPublicProfile = UserService.create(username)
-    res.send(newUserPublicProfile)
+    const username = validateUsername(req.body.username)
+    res.send(UserService.create(username))
 })
 
 userController.get("/users", (req, res) => {
-    res.send([...users.values()].map(user => user.getPublicProfile()))
+    res.send(UserService.findAll())
 })
 
 userController.get("/users/:username", (req, res) => {
-    const username = req.params.username;
-    if (!users.has(username)) {
-        return res.status(404).send()
-    }
-    res.send(users.get(username).getPublicProfile())
+    const username = validateUsername(req.params.username)
+    res.send(UserService.findByUsername(username))
 })
 
 userController.get("/users/:username/games", (req, res) => {
-    const username = req.params.username;
-    const status = req.query.status
-    if (!users.has(username)) {
-        return res.status(404).send()
-    }
-    const user = users.get(username)
-    if(!status) return res.send(user.getPlayedGames().map(game => game.getPublicRepresentation()))
-    res.send(user.getPlayedGames().filter(game => game.status === status).map(game => game.getPublicRepresentation()))
+    const username = validateUsername(req.params.username)
+    res.send(UserService.findUserGames(username, req.query.status))
 })
+
+function validateUsername(username) {
+    if(!username) throw new InvalidParamsException('A username must be provided')
+    return username
+}
 
 module.exports = userController

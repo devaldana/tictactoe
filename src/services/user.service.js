@@ -32,5 +32,8 @@ function findUserGames(username, status) {
 }
 
 module.exports = {
-    create
+    create,
+    findAll,
+    findByUsername,
+    findUserGames
 }
