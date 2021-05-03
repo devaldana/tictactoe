@@ -88,11 +88,11 @@ class Game {
     getPublicRepresentation() {
         return {
             createdAt: this.createdAt,
-            playerX: this.playerX.getPublicProfile(),
-            playerO: this.playerO.getPublicProfile(),
+            playerX: this.playerX ? this.playerX.getPublicProfile() : undefined,
+            playerO: this.playerO ? this.playerO.getPublicProfile() : undefined,
             playerXMarkedCells: this.playerXMarkedCells,
             playerOMarkedCells: this.playerOMarkedCells,
-            winner: this.winner.getPublicProfile(),
+            winner: this.winner ? this.winner.getPublicProfile() : undefined,
             status: this.status,
             finished: this.isFinished(),
             board: this.board.getPublicRepresentation(),
